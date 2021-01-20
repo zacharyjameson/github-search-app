@@ -27,6 +27,14 @@
   li, img {
     max-width: 500px;
   }
+
+  a {
+      color: purple;
+  }
+  
+  a:hover {
+      color: orange;
+  }
   
   .container {
     max-width: 600px;

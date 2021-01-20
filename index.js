@@ -1,7 +1,7 @@
-"use strict";
+'use strict'
 
-function getRepoList(usersName) {
-  const searchUrl = `https://api.github.com/users/${usersName}/repos`;
+function getRepoList(username) {
+  const searchUrl = `https://api.github.com/users/${username}/repos`;
 
   fetch(searchUrl)
     .then((response) => {
@@ -12,13 +12,14 @@ function getRepoList(usersName) {
     })
     .then((responseJson) => displayResults(responseJson))
     .catch((err) => {
-      $("#js-error-message").text(`Something went wrong: ${err.message}`);
+      $("#js-error-message").text(`Whoops! ${err.message}`);
     });
 }
 
 function displayResults(responseJson) {
   console.log(responseJson);
   $("#results-list").empty();
+  $('#js-error-message').empty();
   for (let i = 0; i < responseJson.length; i++) {
     $("#results-list").append(
       `<li><h3><a href="${responseJson[i].html_url}">${responseJson[i].name}</a></h3>
@@ -32,8 +33,8 @@ function displayResults(responseJson) {
 function watchForm() {
   $("form").submit((event) => {
     event.preventDefault();
-    const usersName = $("#js-username").val();
-    getRepoList(usersName);
+    const username = $("#js-username").val();
+    getRepoList(username);
   });
 }
 
